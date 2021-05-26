@@ -1,4 +1,5 @@
 ### [Paper](https://arxiv.org/abs/2005.10821) | [YouTube](https://youtu.be/odAGA7pFBGA)  | [Cityscapes Score](https://www.cityscapes-dataset.com/method-details/?submissionID=7836) <br>
+[![docker-build](https://github.com/evroon/semantic-segmentation/actions/workflows/main.yml/badge.svg)](https://github.com/evroon/semantic-segmentation/actions/workflows/main.yml)
 
 Pytorch implementation of our paper [Hierarchical Multi-Scale Attention for Semantic Segmentation](https://arxiv.org/abs/2005.10821).<br>
 
