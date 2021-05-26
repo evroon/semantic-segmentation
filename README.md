@@ -4,10 +4,10 @@ Pytorch implementation of our paper [Hierarchical Multi-Scale Attention for Sema
 
 Please refer to the `sdcnet` branch if you are looking for the code corresponding to [Improving Semantic Segmentation via Video Prediction and Label Relaxation](https://nv-adlr.github.io/publication/2018-Segmentation).
 
-## Installation 
+## Installation
 
 * The code is tested with pytorch 1.3 and python 3.6
-* You can use ./Dockerfile to build an image.
+* You can use `./build_docker.sh` to build an image.
 
 
 ## Download Weights
@@ -17,11 +17,17 @@ Please refer to the `sdcnet` branch if you are looking for the code correspondin
   > mkdir <large_asset_dir>
 ```
 
-* Update `__C.ASSETS_PATH` in `config.py` to point at that directory
-
-  __C.ASSETS_PATH=<large_asset_dir>
+* Set the environment variable `HRNET_WEIGHTS_PATH` to `<large_asset_dir>` by adding to your `.bashrc`:
+```bash
+  export HRNET_WEIGHTS_PATH=<large_asset_dir>
+```
 
 * Download pretrained weights from [google drive](https://drive.google.com/open?id=1fs-uLzXvmsISbS635eRZCc5uzQdBIZ_U) and put into `<large_asset_dir>/seg_weights`
+
+Now, you can run `./launch_docker.sh` to run the docker container. To test if everything works, run: (as explained [below](#run-inference-and-dump-images-on-a-folder-of-images))
+```bash
+python -m runx.runx scripts/dump_folder.yml -i
+```
 
 ## Download/Prepare Data
 
@@ -55,7 +61,7 @@ Dry run:
 ```bash
 > python -m runx.runx scripts/eval_cityscapes.yml -i -n
 ```
-This will just print out the command but not run. It's a good way to inspect the commandline. 
+This will just print out the command but not run. It's a good way to inspect the commandline.
 
 Real run:
 ```bash
@@ -78,7 +84,7 @@ The reported IOU should be 61.05. Note that this must be run on a 32GB node and 
 > python -m runx.runx scripts/dump_cityscapes.yml -i
 ```
 
-This will dump network output and composited images from running evaluation with the Cityscapes validation set. 
+This will dump network output and composited images from running evaluation with the Cityscapes validation set.
 
 ### Run inference and dump images on a folder of images
 
