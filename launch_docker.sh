@@ -6,8 +6,26 @@ if [[ -z "${HRNET_WEIGHTS_PATH}" ]]; then
     exit 1
 fi
 
+dataset_dir=""
+
+while test $# -gt 0
+do
+    case "$1" in
+        --run) COMMAND="./run.sh"
+            ;;
+        --dataset)
+            dataset_dir="$2"
+            echo "data directory:" $dataset_dir
+            shift
+            ;;
+    esac
+    shift
+done
+
 sudo docker run -it --rm --gpus all \
            --shm-size=512m \
            --volume=$(pwd):/hrnet:rw \
+           -v $dataset_dir:/hrnet/imgs/test_imgs \
            -v $HRNET_WEIGHTS_PATH:/data \
-           evroon/hrnet:latest
+           evroon/hrnet:latest \
+           bash -c "$COMMAND"

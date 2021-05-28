@@ -25,9 +25,9 @@ Please refer to the `sdcnet` branch if you are looking for the code correspondin
 
 * Download pretrained weights from [google drive](https://drive.google.com/open?id=1fs-uLzXvmsISbS635eRZCc5uzQdBIZ_U) and put into `<large_asset_dir>/seg_weights`
 
-Now, you can run `./launch_docker.sh` to run the docker container. To test if everything works, run: (as explained [below](#run-inference-and-dump-images-on-a-folder-of-images))
+Now, you can run `./launch_docker.sh` to start a shell in a new docker container. To run inference on a folder of images, run: (as explained [below](#run-inference-and-dump-images-on-a-folder-of-images))
 ```bash
-python -m runx.runx scripts/dump_folder.yml -i
+./launch_docker.sh --run --dataset /path/to/images
 ```
 
 ## Download/Prepare Data
@@ -90,7 +90,7 @@ This will dump network output and composited images from running evaluation with
 ### Run inference and dump images on a folder of images
 
 ```bash
-> python -m runx.runx scripts/dump_folder.yml -i
+./launch_docker.sh --run --dataset /path/to/images
 ```
 
 You should end up seeing images that look like the following:
