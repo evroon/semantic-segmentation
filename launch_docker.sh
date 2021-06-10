@@ -24,7 +24,7 @@ do
     shift
 done
 
-sudo docker run -it --rm --gpus all \
+docker run -it --rm --gpus all \
            --shm-size=512m \
            --volume=$base_dir:/hrnet:rw \
            -v $dataset_dir:/hrnet/imgs/test_imgs \
